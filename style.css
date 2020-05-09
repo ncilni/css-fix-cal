@@ -1,0 +1,79 @@
+.month-calendar {
+  font-size: 14px;
+}
+.month-calendar .date-controls {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  font-size: 18px;
+  position: relative;
+}
+
+.book-test-container
+  .exam-registration-calendar
+  .calendar-container
+  [role="button"] {
+  cursor: default;
+  outline: none;
+}
+.month-calendar .date-controls .cal-btn {
+  font-size: 14px;
+  position: absolute;
+}
+.month-calendar .date-controls .month {
+  margin: 0 auto;
+}
+.book-test-container
+  .exam-registration-calendar
+  .calendar-container
+  [role="button"] {
+  cursor: default;
+  outline: none;
+}
+.month-calendar .date-controls .cal-btn:last-child {
+  right: 0;
+}
+.month-calendar .date-controls .cal-btn {
+  font-size: 14px;
+  position: absolute;
+}
+.calendar-container {
+  min-height: calc(100vh - 379px);
+  overflow-wrap: break-word;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.weekDay {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  font-weight: 600;
+  text-align: center;
+  background-color: #fff;
+  border: none;
+}
+.available {
+  background-color: #ddf1fa;
+  color: black;
+}
+
+.calDay {
+  border: 3px solid #fff;
+  background-color: #f6f6f6;
+  text-align: center;
+  position: relative;
+  color: #aaa;
+  height: 50px;
+}
+
+.inner-container {
+  width: 85%;
+}

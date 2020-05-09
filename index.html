@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://bcteam.github.io/Solas-UI/0.0.11/css/bc-theme.css" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="inner-container center-block">
+        <div class="calendar-container">
+            <span month-date="vm.activeMonth" days-extensions="vm.daysExtensions" short-weekday-labels="true">
+                <div class="span">
+                    <div ng-transclude="controls">
+                        <span>
+                            <span ng-model="vm.activeMonth" ng-change="vm.onMonthChange()"
+                                available-months="vm.availableMonths"
+                                class="ng-pristine ng-untouched ng-valid ng-not-empty" aria-invalid="false" style="">
+                                <div class="date-controls">
+                                    <!---->
+                                    <div class="cal-btn" title="Previous month" ng-click="vm.goToPrevMonth()"
+                                        ng-if="!(vm.minMonthIsSameAsViewValue || vm.isFirstMonthSelected &amp;&amp; vm.previousMonthFormatted)"
+                                        role="button" tabindex="0" style="">
+                                        <i class="fa fa-chevron-left" bc-icon="left-open">
+                                            <svg class="bc-svg bc-svg-left-open" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    xlink:href="#icon-left-open">
+                                                </use>
+                                            </svg></i><span class="hidden-xs">May</span>
+                                    </div>
+                                    <!---->
+                                    <div class="month">
+                                        <i class="fa fa-calendar"></i> June 2020
+                                    </div>
+                                    <!---->
+                                    <div class="cal-btn" title="Next month" ng-click="vm.goToNextMonth()"
+                                        ng-if="!(vm.maxMonthIsSameAsViewValue || vm.isLastMonthSelected &amp;&amp; vm.nextMonthFormatted)"
+                                        role="button" tabindex="0">
+                                        <span class="hidden-xs">July</span><i class="fa fa-chevron-right"
+                                            bc-icon="right-open">
+                                            <svg class="bc-svg bc-svg-right-open" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    xlink:href="#icon-right-open">
+                                                </use>
+                                            </svg></i>
+                                    </div>
+                                    <!---->
+                                </div>
+                            </span>
+                        </span>
+                    </div>
+
+                    <table class="calendar-display">
+                        <tbody>
+                            <tr class="weekDays">
+                                <!---->
+                                <th class="weekDay" ng-repeat="weekDay in vm.weekDays">Mo</th>
+                                <!---->
+                                <th class="weekDay" ng-repeat="weekDay in vm.weekDays">Tu</th>
+                                <!---->
+                                <th class="weekDay" ng-repeat="weekDay in vm.weekDays">We</th>
+                                <!---->
+                                <th class="weekDay" ng-repeat="weekDay in vm.weekDays">Th</th>
+                                <!---->
+                                <th class="weekDay" ng-repeat="weekDay in vm.weekDays">Fr</th>
+                                <!---->
+                                <th class="weekDay" ng-repeat="weekDay in vm.weekDays">Sa</th>
+                                <!---->
+                                <th class="weekDay" ng-repeat="weekDay in vm.weekDays">Su</th>
+                                <!---->
+                            </tr>
+
+                            <!---->
+                            <tr class="calendar-days" ng-repeat="row in vm.rows" style="">
+                                <!---->
+                                <td class="calDay outside-scope" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                27
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay outside-scope" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                28
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay outside-scope" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                29
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay outside-scope" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                30
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                1
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                2
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                3
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                            </tr>
+                            <!---->
+                            <tr class="calendar-days" ng-repeat="row in vm.rows">
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                4
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                5
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                6
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                7
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                8
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                9
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                10
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                            </tr>
+                            <!---->
+                            <tr class="calendar-days" ng-repeat="row in vm.rows">
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                11
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                12
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                13
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                14
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container available" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                15
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                16
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                17
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                            </tr>
+                            <!---->
+                            <tr class="calendar-days" ng-repeat="row in vm.rows">
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                18
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                19
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                20
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                21
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container available" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                22
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                23
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                24
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                            </tr>
+                            <!---->
+                            <tr class="calendar-days" ng-repeat="row in vm.rows">
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                25
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                26
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                27
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                28
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                29
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                30
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                                <td class="calDay weekend" ng-repeat="day in row" ng-class="{
+      'outside-scope': !day.inMonth,
+      'weekend': day.isWeekend,
+      'today': day.isoName == vm.today }">
+                                    <div ng-transclude="day" class="calendar-day">
+                                        <span>
+                                            <div class="day-container" ng-click="vm.selectDate($parent.day)"
+                                                ng-class="{ available: $parent.day.isAvailable, active: vm.isDaySelected($parent.day) }"
+                                                role="button" tabindex="0">
+                                                31
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                                <!---->
+                            </tr>
+                            <!---->
+                        </tbody>
+                    </table>
+                </div>
+            </span>
+            <!---->
+        </div>
+    </div>
+</body>
+
+</html>
